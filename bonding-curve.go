@@ -73,3 +73,4 @@ func calculateBuyQuote(solAmount uint64, bondingCurve *BondingCurveData, percent
 
 	return finalTokensBig
 }
+
