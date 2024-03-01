@@ -1,0 +1,12 @@
+[workspace]
+resolver = "2"
+members = [
+    "rustle-core", "rustle-lancedb",
+    "rustle-mongodb", "rustle-neo4j",
+    "rustle-qdrant", "rustle-core/rustle-core-derive",
+    "rustle-sqlite"
+]
+
+
+
+
