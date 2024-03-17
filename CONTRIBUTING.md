@@ -1,4 +1,4 @@
-# Contributing to rustle  
+# Contributing to rustle   
 
 Thank you for considering contributing to rustle! Here are some guidelines to help you get started.
 
