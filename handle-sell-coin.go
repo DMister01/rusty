@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// HandleSellCoins iterates through our list of coins we've purchased,
+// HandleSellCoins iterates through our list of coins we've purchased, 
 // or intend to purchase, checks if they are stale (already sold / buy tx failed),
 // or if they need to be sold, and handles both of those cases
 func (b *Bot) HandleSellCoins() {
