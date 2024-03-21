@@ -230,3 +230,4 @@ async fn create_embeddings(model: openai::EmbeddingModel) -> Vec<(Word, OneOrMan
         .await
         .expect("")
 }
+
