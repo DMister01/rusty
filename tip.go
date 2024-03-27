@@ -25,7 +25,7 @@ type jitoValidator struct {
 	RunningJito bool   `json:"running_jito"`
 }
 
-// JitoManager acts as the struct where we store important information for interacting
+// JitoManager acts as the struct where we store important information for interacting 
 // with Jito. This includes keeping track of the leaders, determining tip amount based on percentile,
 // and building the tip instruction.
 type JitoManager struct {
