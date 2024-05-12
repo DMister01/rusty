@@ -1,11 +1,11 @@
 
-# Pump-Fun Sniper Bot
+# XO Sniper Bot
 
-This repository contains the codebase for the Pump-Fun Sniper Bot developed by [@licketyspliket](https://www.twitter.com/licketyspliket) and me. Although this project is archived and not intended for further iteration, this README provides a comprehensive overview to help anyone who may want to understand or run the bot.
+This repository contains the codebase for the XO Sniper Bot developed by @NewRusCult. Although this project is archived and not intended for further iteration, this README provides a comprehensive overview to help anyone who may want to understand or run the bot.
 
 ## Overview
 
-The Pump-Fun Sniper Bot is designed to interact with the Solana blockchain, purchasing newly minted coins and managing them, based on our replication of orcACR...'s strategy. I detail the strategy more in my first blog post on this project, which can be found [here](https://www.mikem.codes/if-you-aint-first-youre-last-2/).
+The Pump-Fun Sniper Bot is designed to interact with the Solana blockchain, purchasing newly minted coins and managing them, based on our replication of orcACR...'s strategy.
 
 ![Bot Startup](images/bot-running.jpg)
 ## Configuration
@@ -86,4 +86,4 @@ Also, a huge thank you to [weeaa](https://www.github.com/weeaa) for their work o
 
 ## Learn More
 
-Read more about the development of this project on my [blog](https://www.mikem.codes/if-you-aint-first-youre-last-reverse-engineering-a-leading-xo-sniper-part-2/).
+Read more about the development of this project on my blog
