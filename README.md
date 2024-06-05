@@ -13,7 +13,7 @@ More information about this crate can be found in the documentations.
 
 Help us improve rustle by contributing to our Feedback form.
 
-## Table of contents
+## Table of contents 
 
 - [What is rustle?](#what-is-rustle)
 - [Table of contents](#table-of-contents)
