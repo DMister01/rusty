@@ -311,3 +311,4 @@ impl<M: EmbeddingModel + Sync + Send, C: Sync + Send> VectorStoreIndex
         Ok(results)
     }
 }
+
