@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	// set up to be run on same machine as dedicated RPC
+	// set up to be run on same machine as dedicated RPC 
 	// can be swapped out to separate RPC url
 	rpcURL   = "http://127.0.0.1:8799"
 	wsURL    = "ws://127.0.0.1:8800"
