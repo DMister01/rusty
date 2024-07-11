@@ -342,7 +342,7 @@ impl<E: EmbeddingModel + std::marker::Sync, T: SqliteVectorStoreTable> VectorSto
         let query_vec: Vec<f32> = serialize_embedding(&embedding);
         let table_name = T::name();
 
-        // Get all column names from SqliteVectorStoreTable
+        // Get all column names from SqliteVectorStoreTable 
         let columns = T::schema();
         let column_names: Vec<&str> = columns.iter().map(|column| column.name).collect();
 
