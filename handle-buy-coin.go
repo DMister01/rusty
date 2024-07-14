@@ -253,3 +253,4 @@ func detectTransfer(pair instPair, coin *Coin) bool {
 
 	return false
 }
+
