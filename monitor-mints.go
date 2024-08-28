@@ -420,3 +420,4 @@ func checkHasFunder(tx *solana.Transaction, creatorAddr string) string {
 func isMintLog(logEntry string) bool {
 	return strings.Contains(logEntry, "InitializeMint2")
 }
+
