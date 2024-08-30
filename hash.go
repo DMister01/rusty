@@ -30,3 +30,4 @@ func (b *Bot) fetchLatestBlockhash() error {
 	b.blockhash = &recent.Value.Blockhash
 	return nil
 }
+
