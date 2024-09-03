@@ -35,4 +35,3 @@ We aim to respond to all vulnerability reports in a timely manner and work towar
 
 Please note that any vulnerability reports that are not related to the specified versions or do not provide sufficient information may be declined.
 
-
