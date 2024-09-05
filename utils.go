@@ -15,7 +15,7 @@ import (
 	"github.com/gagliardetto/solana-go/rpc/jsonrpc"
 )
 
-// increase lookup time for funders with some common exchange addresses
+// increase lookup time for funders with some common exchange addresses 
 var exchangeAddresses = map[string]interface{}{
 	"AC5RDfQFmDS1deWZos921JfqscXdByf8BKHs5ACWjtW2": nil,
 	"42brAgAVNzMBP7aaktPvAmBSPEkehnFQejiZc53EpJFd": nil,
