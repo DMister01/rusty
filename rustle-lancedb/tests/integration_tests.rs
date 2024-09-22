@@ -174,3 +174,4 @@ async fn vector_serustleh_test() {
 
     db.drop_db().await.unwrap();
 }
+
