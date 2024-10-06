@@ -13,7 +13,7 @@ import (
 	"github.com/gagliardetto/solana-go/programs/token"
 )
 
-// SellCoinFast utilizes the fact that, unlike buying, we do not care if duplicate tx hit the chain
+// SellCoinFast utilizes the fact that, unlike buying, we do not care if duplicate tx hit the chain 
 // if they do, we lose the priority fee, but ensure we are out of the position quickly. For this reason,
 // we spam sell transactions every 400ms for a duration of 6 seconds, resulting in 15 sell tx
 func (b *Bot) SellCoinFast(coin *Coin) {
