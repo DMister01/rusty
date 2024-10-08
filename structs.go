@@ -184,6 +184,7 @@ func (b *Bot) beginJito() error {
 	if err := b.jitoManager.start(); err != nil {
 		return err
 	}
+	
 
 	return nil
 }
