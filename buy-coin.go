@@ -195,7 +195,7 @@ func (b *Bot) createBuyInstruction(tokensToBuy *big.Int, coin *Coin, ata solana.
 }
 
 func (b *Bot) createTransaction(instructions ...solana.Instruction) (*solana.Transaction, error) {
-	// Prepare the transaction with both the associated token account creation and the buy instructions
+	// Prepare the transaction with both the associated token account creation and the buy instructions 
 	return solana.NewTransaction(
 		instructions,
 		*b.blockhash,
