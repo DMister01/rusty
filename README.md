@@ -5,7 +5,7 @@ This repository contains the codebase for the XO Sniper Bot developed by @NewRus
 
 ## Overview
 
-The Pump-Fun Sniper Bot is designed to interact with the Solana blockchain, purchasing newly minted coins and managing them, based on our replication of orcACR...'s strategy.
+The XO Sniper Bot is designed to interact with the Solana blockchain, purchasing newly minted coins and managing them, based on our replication of orcACR...'s strategy.
 
 ![Bot Startup](images/bot-running.jpg)
 ## Configuration
