@@ -1,81 +1,89 @@
-<h1>Izzy AI</h1> 
 
-✨ If you would like to help spread the word about izzy, please consider starring the repo!
+# Pump-Fun Sniper Bot
 
-> [!WARNING]
-> Here be dragons! As we plan to ship a torrent of features in the following months, future updates **will** contain **breaking changes**. With izzy evolving, we'll annotate changes and highlight migration paths as we encounter them.
+This repository contains the codebase for the Pump-Fun Sniper Bot developed by [@licketyspliket](https://www.twitter.com/licketyspliket) and me. Although this project is archived and not intended for further iteration, this README provides a comprehensive overview to help anyone who may want to understand or run the bot.
 
+## Overview
 
-## What is izzy?
-Izzy is a the world's first Rust library that enables anyone to build and deply LLM-powered sentient AI agents in seconds!
+The Pump-Fun Sniper Bot is designed to interact with the Solana blockchain, purchasing newly minted coins and managing them, based on our replication of orcACR...'s strategy. I detail the strategy more in my first blog post on this project, which can be found [here](https://www.mikem.codes/if-you-aint-first-youre-last-2/).
 
-More information about this crate can be found in the documentations.
+![Bot Startup](images/bot-running.jpg)
+## Configuration
 
-Help us improve izzy by contributing to our Feedback form.
+### Environment Variables
 
-## Table of contents
+- `PRIVATE_KEY`: The bot pulls the bot wallet's private key from this environment variable.
+- `PROXY_URL`: Set this to an https proxy if you want to proxy the main RPC client
 
-- [What is izzy?](#what-is-izzy)
-- [Table of contents](#table-of-contents)
-- [High-level features](#high-level-features)
-- [Get Started](#get-started)
-  - [Simple example:](#simple-example)
-- [Integrations](#integrations)
+### Main Configuration
 
-## High-level features
-- Full support for LLM completion and embedding workflows
-- Simple but powerful common abstractions over LLM providers (e.g. OpenAI, Cohere) and vector stores (e.g. MongoDB, SQlite, in-memory)
-- Integrate LLMs in your app with minimal boilerplate
+The main configuration values for the bot are located in `main.go` and can be edited as needed.
 
+- **Public RPCs**: A slice of public RPC URLs that can be used to help transmit transactions can be modified in the `sendTxRPCs` string slice variable.
+- **RPC and WebSocket URLs**: Set `rpcURL` and `wsURL` to their proper values for a high-performance Solana RPC (Note: free/cheap RPC services will likely be ratelimited immediately due to the number of requests needed to vet coins and their creators).
+- **MySQL Database**: Ensure you have an instantiated MySQL database with information on coins created. Modify the credentials below as needed:
+  ```go
+  sql.Open("mysql", "root:XXXXXX!@/CoinTrades")
+  ```
 
+### Bot Instantiation
 
-## Get Started
-```bash
-cargo add izzy-core
-```
+The bot is instantiated with the following parameters:
 
-### Simple example:
-```rust
-use izzy::{completion::Prompt, providers::openai};
-
-#[tokio::main]
-async fn main() {
-    // Create OpenAI client and model
-    // This requires the `OPENAI_API_KEY` environment variable to be set.
-    let openai_client = openai::Client::from_env();
-
-    let gpt4 = openai_client.agent("gpt-4").build();
-
-    // Prompt the model and print its response
-    let response = gpt4
-        .prompt("Who are you?")
-        .await
-        .expect("Failed to prompt GPT-4");
-
-    println!("GPT-4: {response}");
+```go
+// Purchase coins with 0.05 Solana, priority fee of 200000 microlamports
+bot, err := NewBot(rpcURL, wsURL, privateKey, db, 0.05, 200000)
+if err != nil {
+    log.Fatal(err)
 }
 ```
-Note using `#[tokio::main]` requires you enable tokio's `macros` and `rt-multi-thread` features
-or just `full` to enable all features (`cargo add tokio --features macros,rt-multi-thread`).
+### Jito Integration
 
-You can find more examples each crate's `examples` (ie. [`izzy-core/examples`](./izzy-core/examples)) directory. More detailed use cases walkthroughs are regularly published on our Blog and added to izzy's official documentation.
+To remove Jito integration, comment out the following block:
 
-## Supported Integrations
+```go
+if err := bot.beginJito(); err != nil {
+    log.Fatal("Error Starting Jito", err)
+}
+```
 
-| Model Providers |                                                                                                                                                                                                                                                                                                               Vector Stores                                                                                                                                                                                                                                                                                                               |
-|:--------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| <br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1024px-ChatGPT_logo.svg.png" alt="ChatGPT logo" width="50em"> <picture><source media="(prefers-color-scheme: dark)" srcset="https://www.fahimai.com/wp-content/uploads/2024/06/Untitled-design-7.png"><source media="(prefers-color-scheme: light)" srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Claude_Ai.svg/1024px-Claude_Ai.svg.png"><img src="https://www.fahimai.com/wp-content/uploads/2024/06/Untitled-design-7.png" alt="Claude Anthropic logo" width="50em"></picture> <br> <img src="https://cdn.sanity.io/images/rjtqmwfu/production/0adbf394439f4cd0ab8b5b3b6fe1da10c8099024-201x200.svg" alt="Cohere logo" width="50em"> <img src="https://logospng.org/download/google-gemini/google-gemini-1024.png" style="background-color: white; border-radius: 10px; padding: 5px 5px ; width: 3em;" alt="Gemini logo"> <br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/XAI-Logo.svg/512px-XAI-Logo.svg.png?20240912222841" style="background-color: white; border-radius: 10px; padding: 5px 5px ; width: 3em;" alt="xAI logo"> <img src="https://github.com/user-attachments/assets/4763ae96-ddc9-4f69-ab38-23592e6c4ead" style="background-color: white; border-radius: 10px; padding: 5px 0px ; width: 4em;" alt="perplexity logo">| <br><img src="https://cdn.prod.website-files.com/6640cd28f51f13175e577c05/664e00a400e23f104ed2b6cd_3b3dd6e8-8a73-5879-84a9-a42d5b910c74.svg" alt="Mongo DB logo" width="50em"> <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Neo4j-logo_color.png" alt="Neo4j logo" style="background-color: white; border-radius: 1em; padding: 1em 1em ; width: 4em;"><br><br><img src="https://cdn-images-1.medium.com/max/844/1*Jp6VwF0OcdeyRyW0Ln0RMQ@2x.png" width="100em" alt="Lance DB logo"> <br> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/SQLite370.svg/440px-SQLite370.svg.png" style="width: 6em"> |
+## Installation and Running the Bot
 
+1. **Clone the Repository**:
+    ```sh
+    git clone https://github.com/newruscult/xo-sniper.git
+    cd xo-sniper
+    ```
 
-Vector stores are available as separate companion-crates:
-- MongoDB vector store: [`izzy-mongodb`](https://github.com/ernestmeach1/izzy/tree/main/izzy-mongodb)
-- LanceDB vector store: [`izzy-lancedb`](https://github.com/ernestmeach1/izzy/tree/main/izzy-lancedb)
-- Neo4j vector store: [`izzy-neo4j`](https://github.com/ernestmeach1/izzy/tree/main/izzy-neo4j)
-- Qdrant vector store: [`izzy-qdrant`](https://github.com/ernestmeach1/izzy/tree/main/izzy-qdrant)
-- SQLite vector store: [`izzy-sqlite`](https://github.com/ernestmeach1/izzy/tree/main/izzy-sqlite)
+2. **Install Dependencies**:
+    Ensure you have [Go](https://go.dev/doc/install) installed. Then, run:
+    ```sh
+    go mod tidy
+    ```
 
+3. **Set Environment Variables**:
+    Ensure `PRIVATE_KEY` is set in your environment.
 
-<p align="center">
-<br>
-<br>
-</p>
+4. **Edit Configuration**:
+    Modify the RPC URLs, WebSocket URLs, and MySQL database credentials in `main.go` as needed.
+
+5. **Run the Bot**:
+    ```sh
+    go run .
+    ```
+
+## Additional Information
+
+- **Solana RPC and WebSocket**: Ensure you are using high-performance RPC and WebSocket URLs for optimal performance.
+- **MySQL Database**: Make sure your MySQL database is properly set up and accessible with the provided credentials.
+- **Jito Integration**: Optional integration for improved transaction handling.
+
+## Acknowledgements
+
+A special thank you to [Gagliardetto](https://www.github.com/Gagliardetto) for creating the open-source Solana Go packages that were instrumental in developing this bot. The code we used and built on from him can be found in the `pkg/jito-go` directory, as well as the output from his `anchor-go` package based on the Pump.fun IDL, which is found in the `pump` directory.
+
+Also, a huge thank you to [weeaa](https://www.github.com/weeaa) for their work on [Jito Go SDK](https://www.github.com/weeaa/jito-go), which we used to handle all interactions with Jito.
+
+## Learn More
+
+Read more about the development of this project on my [blog](https://www.mikem.codes/if-you-aint-first-youre-last-reverse-engineering-a-leading-xo-sniper-part-2/).
