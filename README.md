@@ -1,4 +1,4 @@
-<h1>rustle AI</h1> 
+<h1>Rustle AI</h1> 
 
 ✨ If you would like to help spread the word about rustle, please consider starring the repo!
 
