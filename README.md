@@ -1,5 +1,7 @@
 <h1>Rustle AI</h1> 
 
+Follow us on [Twitter](https://x.com/RustleAI)!
+
 ✨ If you would like to help spread the word about rustle, please consider starring the repo!
 
 > [!WARNING]
